@@ -6,6 +6,7 @@ from .client import (
     SearchParams,
     ElasticSearch,
     PackageName,
+    MxikSearchItem,
 )
 
 __all__ = [
@@ -13,7 +14,9 @@ __all__ = [
     "MxikData",
     "MxikResponse",
     "MXIKSearchResponse",
+    "MxikSearchItem",
     "SearchParams",
     "ElasticSearch",
     "PackageName",
+    "SearchResponse",
 ]
