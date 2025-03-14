@@ -75,14 +75,14 @@ class MxikData(BaseModel):
     updatedBy: Optional[str] = None
     updatedAt: str
     status: int
-    packageNames: List[PackageName] | None = None
+    packageNames: Optional[List[PackageName]] = None
 
 
 class MxikResponse(BaseModel):
     success: bool
     code: int
     reason: str
-    data: MxikData | None = None
+    data: Optional[MxikData] = None
     errors: Optional[Any] = None
 
 
@@ -90,7 +90,7 @@ class SearchResponse(BaseModel):
     success: bool
     code: int
     reason: str
-    data: list[MxikSearchItem] | None = None
+    data: Optional[List[MxikSearchItem]] = None
     errors: Optional[Any] = None
 
 
