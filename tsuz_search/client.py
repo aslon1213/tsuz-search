@@ -119,7 +119,7 @@ class Client:
         print("Response for get_by_mxik_code: ", response.json())
         return MxikResponse(**response.json())
 
-    def search(self, params: ElasticSearch) -> List[MxikData]:
+    def search(self, params: ElasticSearch) -> SearchResponse:
 
         response = requests.get(
             f"{self.base_url}/elasticsearch/search", params=params.model_dump()
@@ -127,7 +127,7 @@ class Client:
         print("Response for search: ", response.json())
         return SearchResponse(**response.json())
 
-    def search_by_params(self, params: SearchParams) -> List[MxikData]:
+    def search_by_params(self, params: SearchParams) -> SearchResponse:
 
         params = params.model_dump()
         for key, value in params["params"].items():
@@ -137,9 +137,9 @@ class Client:
         response = requests.get(f"{self.base_url}/mxik/search/by-params", params=params)
         return SearchResponse(**response.json())
 
-    def search_dv_cert(self, params: SearchParams) -> List[MxikData]:
+    def search_dv_cert(self, params: SearchParams) -> SearchResponse:
         response = requests.get(
             f"{self.base_url}/mxik/search/dv-cert-number", params=params.model_dump()
         )
-        print(response.json())
+        print("DV Cert response: ", response.json())
         return SearchResponse(**response.json())

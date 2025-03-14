@@ -6,6 +6,7 @@ from tsuz_search import (
     SearchResponse,
     SearchParams,
     ElasticSearch,
+    MxikSearchItem,
 )
 
 
@@ -109,13 +110,18 @@ class TestModels(unittest.TestCase):
             nameLat="Test Name Lat",
         )
 
-        mxik_data = MxikData(
-            id="test_id",
+        mxik_data = MxikSearchItem(
             mxikCode="12345",
-            groupNameUz="Test Group Uz",
-            groupNameRu="Test Group Ru",
-            classNameUz="Test Class Uz",
-            classNameRu="Test Class Ru",
+            name="Test Name",
+            description="Test Description",
+            internationalCode="12345",
+            label="Test Label",
+            fullName="Test Full Name",
+            groupCode="12345",
+            groupName="Test Group Name",
+            className="Test Class Name",
+            positionCode="12345",
+            positionName="Test Position Name",
             positionNameUz="Test Position Uz",
             positionNameRu="Test Position Ru",
             subPositionNameUz="Test SubPosition Uz",
@@ -127,10 +133,12 @@ class TestModels(unittest.TestCase):
             packageNames=[package],
         )
 
-        search_response = SearchResponse(data=[mxik_data])
+        search_response = SearchResponse(
+            code=200, success=True, reason="OK", data=[mxik_data]
+        )
 
         self.assertEqual(len(search_response.data), 1)
-        self.assertEqual(search_response.data[0].id, "test_id")
+        self.assertEqual(search_response.data[0].mxikCode, "12345")
 
     def test_search_params_model(self):
         # Test creating a SearchParams instance
